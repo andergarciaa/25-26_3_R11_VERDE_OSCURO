@@ -1,66 +1,38 @@
-# Reto 11 - NextGen E-Drives: Optimización y Mantenimiento Predictivo
+# Challenge 11: Design Optimization and Development of Electrical Drives
 
-### Industrial AI, Smart Manufacturing & Fault Diagnosis
+## Project Description
+This repository contains the code developed for Challenge 11 of the 3rd year of the Business Data Analytics Degree at Mondragon Unibertsitatea. The main objective of this project is to optimize, test, and validate motor designs based on 6 geometric parameters. 
 
-  **Equipo:** Verde Oscuro
-**Project Managers:** Beatriz Chicote, Ander Juarez, Carlos Cernuda, Aitor Duo
+To achieve this, we have approached the problem through different disciplines and phases:
+* **Design Optimization (MOO):** Proposing the best motor designs using multi-objective evolutionary algorithms.
+* **Manufacturing Simulation:** Modeling the assembly line process using Sympy.
+* **Testing (RL):** Stabilizing the active power of the motor at its minimum using reinforcement learning.
+* **Validation (DSP):** Identifying potential anomalies in bearings using signal analysis techniques.
 
----
+## Repository Structure
+The code is divided into modular scripts that represent the different functional units of the project:
 
-## 📝 Descripción del Proyecto
-Este proyecto aborda la transformación digital de procesos industriales bajo el paradigma de **Industria 4.0**. El objetivo es actuar como una consultora analítica para optimizar el ciclo de vida completo de un accionamiento eléctrico de imanes permanentes enterrados, abarcando desde el diseño geométrico asistido por IA hasta la detección proactiva de fallos en rodamientos.
+### 1. Design Optimization (MOEA)
+* `1.1_Optimizacion_EDA.ipynb`: Initial Exploratory Data Analysis on the design parameters.
+* `1.2_Optimizacion_surrogates.ipynb`: Approximation of new simulations and performance metrics.
+* `1.3_Optimizacion_MOEA.ipynb`: Implementation, evaluation, and evolution of the evolutionary strategies.
+* `1.4_Optimizacion_Top5.ipynb`: Selection of the top 5 motor designs.
 
-El desarrollo se divide en cuatro pilares estratégicos:
-1.  **Optimización Multiobjetivo (MOO):** Diseño de motores eficientes y de bajo coste mediante algoritmos evolutivos.
-2.  **Simulación de Fabricación:** Modelado de la cadena de montaje con Sympy para optimizar la asignación de recursos.
-3.  **Control Inteligente (RL):** Minimización del consumo energético mediante Aprendizaje por Refuerzo en banco de pruebas.
-4.  **Diagnóstico de Fallos (DSP):** Identificación de anomalías mecánicas mediante el procesamiento de señales de alta frecuencia (51.2 kHz).
+### 2. Testing (Reinforcement Learning)
+* `2.1_Mallas_RL.ipynb`: Implementation of the RL environment to minimize the drive's energy consumption.
+* `Configuracion_Agente.py`: Script containing the agent's configuration, hyperparameters, and policies (Q-Learning).
 
----
+### 3. Manufacturing Simulation
+* `3_Data_science_Simpy.ipynb`: Simulation of the assembly process for the electrical drives production line.
 
-## ⚙️ Lógica de Ingeniería y Objetivos
+### 4. Validation (Signal Processing)
+* `4.1_1Preprocesamiento_de_Datos_Industria.ipynb`: Feature extraction and signal processing from the installed sensors (accelerometers, microphone, tachometer).
+* `4.2_Modelaje_industria.ipynb`: Implementation of predictive models for identifying bearing anomalies (unbalance, misalignment, ball/race defects).
 
-El núcleo técnico consiste en optimizar un motor eléctrico definido por un vector de diseño de 6 parámetros geométricos: $x=(h_{m},\alpha_{m},e_{r},d_{si},b_{st},b_{ss})$.
+### 5. Big Data and Data Generation
+* `5.1_Big_data_generar_simulacion.py`: Script for data generation and ingestion, aimed at feeding the Node-RED system and the final Dashboard.
 
-
-
-### Objetivos de Minimización (MOO):
-* **Eficiencia ($o1$):** Minimizar la eficiencia negada para maximizar el rendimiento operativo del motor.
-* **Par de Cogging ($o2$):** Reducir las vibraciones y el ruido acústico en condiciones de funcionamiento sin carga.
-* **Coste Material ($o3$):** Minimizar el coste global de materiales (cobre, aluminio, imanes).
-* **Ripple de Par ($o4$):** Reducir las fluctuaciones de par bajo carga para garantizar la estabilidad del sistema.
-
-### Control por Refuerzo (RL):
-Se implementa un agente para descubrir las condiciones operativas que minimizan la potencia consumida:
-* **Reward:** +1000 al alcanzar el objetivo, -100 por estados inexistentes y -1 por cada iteración sin éxito.
-* **Algoritmo:** Implementación de Q-Learning para encontrar la política óptima de consumo.
-
----
-
-## 📂 Estructura del Repositorio
-
-El flujo de ejecución está diseñado secuencialmente, garantizando la trazabilidad desde la optimización inicial hasta la validación de fallos.
-
-| Orden | Script / Notebook | Descripción Técnica |
-| :--- | :--- | :--- |
-| 1 | `01_Optimizacion_MOO.ipynb` | Implementación de **MOEAs** para proponer diseños óptimos con el mínimo de observaciones. |
-| 2 | `02_Simulacion_Sympy.ipynb` | Simulación de la línea de montaje y fabricación de componentes (Rotor/Estator). |
-| 3 | `03_Control_RL.ipynb` | Entrenamiento del agente de **Aprendizaje por Refuerzo** para estabilizar la potencia activa. |
-| 4 | `04_Deteccion_Anomalias.ipynb` | Procesamiento de señal (FFT) para identificar fallos en pistas y bolas del rodamiento. |
-| 5 | `05_Ingesta_NodeRED.json` | Flujo de ingesta y transformación de datos para el ecosistema digital. |
-| 6 | `app_visualizacion.py` | Dashboard interactivo que integra el frente de Pareto y el análisis de vibraciones. |
-
----
-
-## 🛠️ Requisitos e Instalación
-
-El sistema analiza señales de 4 acelerómetros (IMI 601A01 y 604B31), un micrófono SM81 y un tacómetro MT-190.
-
-
-
+## Installation and Requirements
+To install the necessary dependencies to run the notebooks and scripts in this project, run the following command:
 ```bash
-# Clonar el repositorio
-git clone [https://github.com/tu-usuario/R11_Entrega_EQUIPO.git](https://github.com/tu-usuario/R11_Entrega_EQUIPO.git)
-
-# Instalación de dependencias
 pip install -r requirements.txt
