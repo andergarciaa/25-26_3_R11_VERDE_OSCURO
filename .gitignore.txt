@@ -1,0 +1,31 @@
+# Ignorar datos y archivos pesados
+*.csv
+*.json
+*.npy
+
+# Ignorar modelos entrenados
+*.pkl
+*.joblib
+
+# Ignorar cachés de Python
+__pycache__/
+*.pyc
+
+# Ignorar archivos temporales
+*.log
+*.tmp
+
+# Ignorar checkpoints de Jupyter
+.ipynb_checkpoints/
+
+# Ignorar entornos virtuales
+venv/
+.venv/
+
+# Ignorar archivos del sistema
+.DS_Store
+Thumbs.db
+
+# Ignorar carpetas de editores
+.vscode/
+.idea/
